@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+ {% block jquery %}
+     $signUpCount = {{ count }};
+
+//$(".progress-bar").css("width", "80%").attr("aria-valuenow", "80").text("80%");
+
+function completeBlock(progressBarId){
+	$(progressBarId).css("width", "100%").attr("aria-valuenow", "100").text("Completed");
+};
+
+
+function setNewPerc(progressBarId, percentNum, newText){
+	$(progressBarId).css("width", percentNum + "%").attr("aria-valuenow", percentNum);
+
+	if (percentNum < 50) {
+		//$(progressBarId).text("Your Custom text");
+		$(progressBarId).text(newText);
+	} else {
+		$(progressBarId).text(newText);
+	}
+
+};
+
+if ($signUpCount == 0){
+
+} else if ($signUpCount > 0 && $signUpCount < 5) {
+	$newPercent = $signUpCount/5 * 100;
+	setNewPerc("#count5", $newPercent, $signUpCount + " Friends Joined");
+} else if ($signUpCount>=5 && $signUpCount < 15) {
+	completeBlock("#count5");
+	$newCount = $signUpCount - 5;
+	$newPercent = $newCount/(15-5) * 100;
+	setNewPerc("#count15", $newPercent, $signUpCount + " Friends Joined");
+} else if ($signUpCount >=15 && $signUpCount < 25) {
+	completeBlock("#count5");
+	completeBlock("#count15");
+	$newCount = $signUpCount - 15;
+	$newPercent = $newCount/(25-15) * 100;
+	setNewPerc("#count25", $newPercent, $signUpCount + " Friends Joined");
+
+} else if ($signUpCount >= 25 && $signUpCount < 50 ) {
+	completeBlock("#count5");
+completeBlock("#count15");
+	completeBlock("#count25");
+
+	$newCount = $signUpCount - 25;
+	$newPercent = $newCount/(50-25) * 100;
+	setNewPerc("#count50", $newPercent, $signUpCount + " Friends Joined");
+
+
+} else {
+	completeBlock("#count5");
+	completeBlock("#count15");
+	completeBlock("#count25");
+	completeBlock("#count50");
+}
+
+
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 pull-right" style="text-align: center;">
+                <i class="fa fa-share-alt fa-5x" aria-hidden="true"></i>
+                <h1>Invite Friends & Earn Rewards</h1>
+                <p>Share your unique link below via Email, Facebook, Twitter, Reddit, or LinkedIn to Earn rewards.</p>
+                <div class="well" style="background-color: white;">{{ ref_url }}</div>
+                Share<br>
+                <div class="inline-group">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ ref_url }}" target="_blank">
+                        <i class="fa fa-facebook-square fa-4x" style="color: #3b5998;"></i></a>
+                    <a href="https://twitter.com/home?status=Hello%2C%20this%20is%20a%20learning%20platform%20that%20I%20want%20to%20share%20at%20some%20point.%20Tweet%20%40ajeetsingh1646.{{ ref_url }}" t
+arget="_blank">
+                        <i class="fa fa-twitter-square fa-4x" style="color: #4099ff"></i></a>
+                    			<a href="https://www.linkedin.com/shareArti
+cle?mini=true&url={{ ref_url}}&title=Hello%20this%20is%20a%20title.&summary=Hello%2C%20this%20is%20a%20learning%20platform%20that%20I%20want%20to%20share%20at%20some%20point.&source={{ ref_url }}" target="_blank">
+                                    <i class="fa fa-linkedin-square fa-4x" style="color: #9000020"></i></a>
+                    <a href="http://www.reddit.com/submit?url={{ ref_url }}&title=Hello%20this%20is%20a%20title." target="_blank">
+                        <i class="fa fa-reddit-square fa-4x" style="color: #007bb6;"></i></a>
+                    <a href='https://plus.google.com/share?url={{ ref_url }}' target="_blank">
+                        <i class="fa fa-google-plus-square fa-4x" style="color: #d34836;"></i></a>
+                </div>
+
+            </div>
+            <div class="col-md-6 pull-left">
+                <img src="{% static 'img/launch1.jpg' %}" class="img-responsive img-rounded" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="text-align:center;">
+    <h2>How it works </h2>
+    <h4>
+        Friends join, you earn rewards.<br>
+        The teirs and rewards are below.<br>
+        Your count is updated automaticaly.<br>
+        Your information is private.<br>
+        This page is public.
+    </h4>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <h3>5 Joined</h3>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="count5" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+            <h4>Reward Name</h4>
+            <i class="fa fa-google-wallet fa-4x" aria-hidden="true"></i>
+            <hr>
+            <span style="text-align:left;">
+            <h5>Rewards Achieved:</h5>
+            <ul>
+                <li>Gift 1</li>
+                <li>Gift 2</li>
+            </ul>
+            </span>
+            <hr>
+        </div>
+        <div class="col-sm-3">
+            <h3>15 Joined</h3>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="count15" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+            <h4>Reward Name</h4>
+            <i class="fa fa-google-wallet fa-4x" aria-hidden="true"></i>
+            <i class="fa fa-steam fa-3x" aria-hidden="true"></i>
+            <hr>
+            <span style="text-align:left;">
+            <h5>Rewards Achieved:</h5>
+            <ul>
+                <li>Gift 1</li>
+                <li>Gift 2</li>
+            </ul>
+            </span>
+            <hr>
+
+        </div>
+        <div class="col-sm-3">
+            <h3>25 Joined</h3>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="count25" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+            <h4>Reward Name</h4>
+            <i class="fa fa-google-wallet fa-4x" aria-hidden="true"></i>
+            <i class="fa fa-steam fa-3x" aria-hidden="true"></i>
+            <hr>
+            <span style="text-align:left;">
+            <h5>Rewards Achieved:</h5>
+            <ul>
+                <li>Gift 1</li>
+                <li>Gift 2</li>
+            </ul>
+            </span>
+            <hr>
+
+        </div>
+        <div class="col-sm-3">
+            <h3>50 Joined</h3>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="count50" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+            <h4>Reward Name</h4>
+            <i class="fa fa-google-wallet fa-4x" aria-hidden="true"></i>
+            <i class="fa fa-steam fa-3x" aria-hidden="true"></i>
+            <hr>
+            <span style="text-align:left;">
+            <h5>Rewards Achieved:</h5>
+            <ul>
+                <li>Gift 1</li>
+                <li>Gift 2</li>
+            </ul>
+            </span>
+            <hr>
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

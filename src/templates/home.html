@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block styles %}
+ body{
+            color:black;
+            border-top: 4px solid #8f2ea0;
+            background: url("{% static 'img/alpha1.jpg' %}") center center fixed;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+{% endblock %}
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron" style="background-color: white;">
+    <div class="container">
+        <div class="col-sm-6">
+            <h1>Share with CODE!</h1>
+            <h2>Use it as starting point to<br>  create something more unique.</h2>
+            <p><a class="btn btn-default btn-lg" href="#befirst" role="button" style="text-align: center;width: 100%;">Be First &raquo;</a></p>
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'img/icloud.jpg' %}" class="img-responsive" />
+        </div>
+    </div>
+</div>
+
+<div class="container" style="text-align: center;">
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <i class="fa fa-chrome fa-spin fa-4x fa-fw" id="befirst" style="color: white;"></i><br>
+        <h1 style="color: white;">Unlock First !</h1>
+        <form class="form-horizontal" method="POST" action=""> {% csrf_token %}
+            <div class="form-group form-group-lg">
+                {{ form.email.errors }}
+            <div class="input-group">
+                <input class="form-control" type="email" name="email" placeholder="Your Email">
+                <span class="input-group-btn">
+                    <input type="submit" value=" Join " class=" btn btn-success btn-lg" />
+                </span>
+            </div>
+        </div>
+            <div style="margin: 10px;color: white;">
+                <br>
+               <h2>Sign up here.</h2>
+            <h2>Get First News on Content.</h2>
+            </div>
+    </form>
+</div>
+</div>
+
+    <div class="row" style="text-align: center;background:Linear-gradient(#8cff1a,#ffff66);80px 0px;min-height: 200px;margin-top: 50px;">
+    <div class="col-sm-12" style="margin-top: 20px;">
+        <div class="col-sm-4">
+           <a href="http://getbootstrap.com" target="_blank">
+            <i class="fa fa-bold fa-5x" style="color: black;"></i>
+            <h1>Bootstrap</h1>
+           </a>
+            <h3>Learn bootstrap from official website.</h3>
+        </div>
+
+        <div class="col-sm-4">
+           <a href="https://www.w3schools.com/html/default.asp" target="_blank">
+            <i class="fa fa-html5 fa-5x" style="color: #fe9210;"></i>
+            <h1>HTML5</h1>
+           </a>
+            <h3>A good learning platform for HTML5.</h3>
+        </div>
+        <div class="col-sm-4">
+           <a href="https://www.w3schools.com/css/default.asp" target="_blank">
+            <i class="fa fa-css3 fa-5x" style="color: darkblue;"></i>
+            <h1>CSS3</h1>
+           </a>
+            <h3>Be the unique and learn unique styling.</h3>
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class="row" style="text-align: center;background:Linear-gradient(#ffff66,#8cff1a);80px 0px;min-height: 200px;margin-bottom: 40px;">
+<br>
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="col-sm-4">
+           <a href="http://wordpress.org" target="_blank">
+            <i class="fa fa-wordpress fa-5x" style="color: grey;"></i>
+            <h1>Wordpress</h1>
+           </a>
+            <h3>WordPress is open source software you can use to create a beautiful website, blog, or app.</h3>
+        </div>
+        <div class="col-sm-4">
+           <a href="https://www.quora.com/" target="_blank">
+            <i class="fa fa-quora fa-5x" style="color: firebrick;"></i>
+            <h1>Quora</h1>
+           </a>
+            <h3>A place to share knowledge and better understand the world.</h3>
+        </div>
+        <div class="col-sm-4">
+           <a href="http://www.geeksforgeeks.org/" target="_blank">
+            <i class="fa fa-gitlab fa-5x" style="color: limegreen;"></i>
+            <h1>GeeksforGeek</h1>
+           </a>
+            <h3>A Computer Science portal for geeks.</h3>
+        </div>
+
+    </div>
+</div>
+{% endblock content%}
